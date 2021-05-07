@@ -10,6 +10,8 @@ rules, but I'll try.
 Some of the PDFs come from the game developers, some come from community efforts to
 make print-and-play easier.
 
+I've modelled tokens for 3d printing in ./parts/.
+
 The developers have voiced support for print-and-play, so I'm hoping this repo will not
-cause grief. 
+cause grief.
 
