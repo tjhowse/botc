@@ -6,8 +6,8 @@ pip_token_r = 12/2;
 alignment_token_r = 15/2;
 
 shroud_x = 20;
-shroud_y = 35.5;
-shroud_tab_y = 8.5;
+shroud_y = 36;
+shroud_notch_y = 8.5;
 
 info_tag_x = 47;
 info_tag_y = 58;
@@ -58,17 +58,17 @@ module info_tag() {
 module shroud() {
     difference() {
         cube([shroud_x, shroud_y, token_z*2]);
-        translate([shroud_x/2,-50*sqrt(2)+shroud_x/2, 0]) rotate([0,0,45]) cube([100, 100, 100], center=true);
-        translate([shroud_x/2,shroud_y/4,token_z]) #character_token();
+        translate([shroud_x/2,0,0]) scale([shroud_x/2,shroud_notch_y,1]) rotate([0,0,45]) cube([sqrt(2), sqrt(2), 100], center=true);
+        translate([shroud_x/2,shroud_y/4,token_z]) character_token();
     }
 }
 render() {
-    life_token(); // 18 (townsfolk) + 5 (traveller)
+    // life_token(); // 18 (townsfolk) + 5 (traveller)
     // character_token(); // 103
     // vote_token(); // 20
     // effect_token(); // 125
     // alignment_token(); // 22
     // pip_token(); // 34
     // info_tag(); // 12
-    // shroud(); // 18
+    shroud(); // 18
 }
