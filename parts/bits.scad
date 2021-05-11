@@ -18,6 +18,44 @@ info_tag_offset_y = info_tag_y-info_tag_corner_r*2;
 token_z = 2;
 $fn=32;
 
+// This is a tool for cutting nice circles out of paper for gluing onto the printed tokens.
+// Print both parts. Glue a section of craft knife blade to the flat portion of the outer ring.
+// Position the thicker inner ring exactly over the centre of the circle you want to cut.
+// Lower the outer ring over the inner ring. Firmly hold the inner ring in place as you rotate
+// the outer ring around to make the cut.
+// Tweak the cutter_gap variable until your outer ring fits snugly over the inner ring with
+// minimum wiggle room.
+cutter_inner_z = 20;
+cutter_inner_thickness = 5;
+cutter_outer_z = 10;
+cutter_outer_thickness = 2;
+cutter_gap = 0.2;
+cutter_blade_thickness = 0.4;
+cutter_blade_flat_section = 10;
+cutter_fn = 100;
+
+module cutter(cut_radius) {
+    cutter_inner(cut_radius);
+    translate([cut_radius*2+10,0,0]) cutter_outer(cut_radius);
+}
+
+module cutter_inner(cut_radius) {
+    difference() {
+        cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness-cutter_gap, h=cutter_inner_z, $fn=cutter_fn);
+        cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness-cutter_gap-cutter_inner_thickness, h=cutter_inner_z, $fn=cutter_fn);
+    }
+}
+
+module cutter_outer(cut_radius) {
+    difference() {
+        hull() {
+            cylinder(r=cut_radius-cutter_blade_thickness/2, h=cutter_outer_z, $fn=cutter_fn);
+            translate([-cutter_blade_flat_section/2,cut_radius-cutter_blade_thickness/2-cutter_outer_thickness,0]) cube([cutter_blade_flat_section, cutter_outer_thickness, cutter_outer_z]);
+        }
+        cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness, h=cutter_outer_z, $fn=cutter_fn);
+    }
+}
+
 module token(radius) {
     cylinder(r=radius,h=token_z);
 }
@@ -70,5 +108,6 @@ render() {
     // alignment_token(); // 22
     // pip_token(); // 34
     // info_tag(); // 12
-    shroud(); // 18
+    // shroud(); // 18
+    cutter(character_token_r);
 }
