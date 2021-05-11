@@ -25,18 +25,23 @@ $fn=32;
 // the outer ring around to make the cut.
 // Tweak the cutter_gap variable until your outer ring fits snugly over the inner ring with
 // minimum wiggle room.
+
+// I've found that it's good to make the circle pieces slightly smaller than the tokens to
+// protect the edges of the paper.
+cutter_tweak = 0.25;
 cutter_inner_z = 20;
 cutter_inner_thickness = 5;
 cutter_outer_z = 10;
 cutter_outer_thickness = 2;
-cutter_gap = 0.2;
+cutter_gap = 0.1; // You may need to change this number based on how much clearance you need.
 cutter_blade_thickness = 0.4;
-cutter_blade_flat_section = 10;
+cutter_blade_flat_section_x = 10;
 cutter_fn = 100;
+cutter_blade_x = 4.8;
 
 module cutter(cut_radius) {
-    cutter_inner(cut_radius);
-    translate([cut_radius*2+10,0,0]) cutter_outer(cut_radius);
+    cutter_inner(cut_radius-cutter_tweak);
+    translate([cut_radius*2+10,0,0]) cutter_outer(cut_radius-cutter_tweak);
 }
 
 module cutter_inner(cut_radius) {
@@ -46,13 +51,25 @@ module cutter_inner(cut_radius) {
     }
 }
 
+module cutter_blade_groove() {
+    wt = (cutter_blade_flat_section_x - cutter_blade_x)/2;
+    translate([-wt/2-cutter_blade_x/2,cutter_blade_thickness,cutter_outer_z/2]) cube([wt,cutter_blade_thickness*2,cutter_outer_z], center=true);
+    translate([wt/2+cutter_blade_x/2,cutter_blade_thickness,cutter_outer_z/2]) cube([wt,cutter_blade_thickness*2,cutter_outer_z], center=true);
+}
+
 module cutter_outer(cut_radius) {
     difference() {
         hull() {
             cylinder(r=cut_radius-cutter_blade_thickness/2, h=cutter_outer_z, $fn=cutter_fn);
-            translate([-cutter_blade_flat_section/2,cut_radius-cutter_blade_thickness/2-cutter_outer_thickness,0]) cube([cutter_blade_flat_section, cutter_outer_thickness, cutter_outer_z]);
+            for (i = [0:90:360]) {
+                rotate([0,0,i]) translate([-cutter_blade_flat_section_x/2,cut_radius-cutter_blade_thickness/2-cutter_outer_thickness,0]) cube([cutter_blade_flat_section_x, cutter_outer_thickness, cutter_outer_z]);
+            }
         }
         cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness, h=cutter_outer_z, $fn=cutter_fn);
+        echo(cut_radius-cutter_blade_thickness/2-cutter_outer_thickness);
+    }
+    for (i = [0:90:360]) {
+        rotate([0,0,i]) translate([0,cut_radius-cutter_blade_thickness/2,0]) cutter_blade_groove();
     }
 }
 
