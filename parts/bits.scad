@@ -57,7 +57,7 @@ module cutter_blade_groove() {
     translate([wt/2+cutter_blade_x/2,cutter_blade_thickness,cutter_outer_z/2]) cube([wt,cutter_blade_thickness*2,cutter_outer_z], center=true);
 }
 
-module cutter_outer(cut_radius) {
+module cutter_outer(cut_radius, blade_grooves=false) {
     difference() {
         hull() {
             cylinder(r=cut_radius-cutter_blade_thickness/2, h=cutter_outer_z, $fn=cutter_fn);
@@ -68,8 +68,10 @@ module cutter_outer(cut_radius) {
         cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness, h=cutter_outer_z, $fn=cutter_fn);
         echo(cut_radius-cutter_blade_thickness/2-cutter_outer_thickness);
     }
-    for (i = [0:90:360]) {
-        rotate([0,0,i]) translate([0,cut_radius-cutter_blade_thickness/2,0]) cutter_blade_groove();
+    if (blade_grooves) {
+        for (i = [0:90:360]) {
+            rotate([0,0,i]) translate([0,cut_radius-cutter_blade_thickness/2,0]) cutter_blade_groove();
+        }
     }
 }
 
