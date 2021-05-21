@@ -29,7 +29,7 @@ $fn=32;
 // I've found that it's good to make the circle pieces slightly smaller than the tokens to
 // protect the edges of the paper.
 cutter_tweak = 0.25;
-cutter_inner_z = 20;
+cutter_inner_z = 30;
 cutter_inner_thickness = 5;
 cutter_outer_z = 15;
 cutter_outer_thickness = 2;
@@ -61,7 +61,7 @@ module cutter_outer(cut_radius, blade_grooves=false) {
     difference() {
         hull() {
             cylinder(r=cut_radius-cutter_blade_thickness/2, h=cutter_outer_z, $fn=cutter_fn);
-            for (i = [0:90:360]) {
+            for (i = [0:360/3:360]) {
                 rotate([0,0,i]) translate([-cutter_blade_flat_section_x/2,cut_radius-cutter_blade_thickness/2-cutter_outer_thickness,0]) cube([cutter_blade_flat_section_x, cutter_outer_thickness, cutter_outer_z]);
             }
         }
@@ -69,7 +69,7 @@ module cutter_outer(cut_radius, blade_grooves=false) {
         echo(cut_radius-cutter_blade_thickness/2-cutter_outer_thickness);
     }
     if (blade_grooves) {
-        for (i = [0:90:360]) {
+        for (i = [0:360/3:360]) {
             rotate([0,0,i]) translate([0,cut_radius-cutter_blade_thickness/2,0]) cutter_blade_groove();
         }
     }
