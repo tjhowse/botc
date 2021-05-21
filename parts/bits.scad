@@ -119,6 +119,44 @@ module shroud() {
         translate([shroud_x/2,shroud_y/4,token_z]) character_token();
     }
 }
+
+bits_box_wt = 2; // Wall thickness
+game_box_inside_x = 257;
+bits_box_clearance_x = 5;
+// bits_box_x = game_box_inside_x-bits_box_clearance_x;
+bits_box_lid_clearance = 0.35;
+bits_box_bits_clearance = 0.5; // How much space around the character tokens?
+// bits_box_y = character_token_r*2+bits_box_wt*2+2*bits_box_bits_clearance;
+bits_box_compartment_xy = character_token_r*2+bits_box_bits_clearance*2;
+bits_box_x = 2*bits_box_compartment_xy+bits_box_wt*3;
+bits_box_y = bits_box_x;
+bits_box_z = 35;
+bits_box_lid_z = 20;
+bits_box_vent_hole_r = 5; // The lid seals onto the base too well. Needs a breather hole.
+
+module bits_box_base_cutout() {
+    cube([bits_box_compartment_xy, bits_box_compartment_xy, bits_box_z-bits_box_wt]);
+    // translate([bits_box_compartment_xy/2, bits_box_compartment_xy/2,-bits_box_wt]) cylinder(r=bits_box_vent_hole_r, h = bits_box_wt);
+}
+
+module bits_box_base() {
+    difference() {
+        cube([bits_box_x, bits_box_y, bits_box_z]);
+        translate([bits_box_wt,bits_box_wt,bits_box_wt]) bits_box_base_cutout();
+        translate([bits_box_wt*2+bits_box_compartment_xy,bits_box_wt,bits_box_wt]) bits_box_base_cutout();
+        translate([bits_box_wt,bits_box_wt*2+bits_box_compartment_xy,bits_box_wt]) bits_box_base_cutout();
+        translate([bits_box_wt*2+bits_box_compartment_xy,bits_box_wt*2+bits_box_compartment_xy,bits_box_wt]) bits_box_base_cutout();
+        translate([bits_box_x/2, bits_box_y/2, 0]) sphere(r=bits_box_vent_hole_r);
+    }
+}
+
+module bits_box_lid() {
+    difference() {
+        cube([bits_box_x+bits_box_lid_clearance+2*bits_box_wt, bits_box_y+bits_box_lid_clearance+2*bits_box_wt, bits_box_lid_z+bits_box_wt]);
+        translate([bits_box_wt,bits_box_wt,bits_box_wt]) cube([bits_box_x+bits_box_lid_clearance, bits_box_y+bits_box_lid_clearance, bits_box_z]);
+    }
+}
+
 render() {
     // life_token(); // 18 (townsfolk) + 5 (traveller)
     // character_token(); // 103
@@ -128,5 +166,9 @@ render() {
     // pip_token(); // 34
     // info_tag(); // 12
     // shroud(); // 18
-    cutter(character_token_r);
+    // cutter(character_token_r);
+    // cutter(life_token_r);
+    cutter(effect_token_r);
+    // bits_box_base(); // 4
+    // bits_box_lid(); // 4
 }
