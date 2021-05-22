@@ -16,7 +16,7 @@ info_tag_offset_x = info_tag_x-info_tag_corner_r*2;
 info_tag_offset_y = info_tag_y-info_tag_corner_r*2;
 
 token_z = 2;
-$fn=32;
+$fn=64;
 
 // This is a tool for cutting nice circles out of paper for gluing onto the printed tokens.
 // Print both parts. Glue a section of craft knife blade to the flat portion of the outer ring.
@@ -66,7 +66,6 @@ module cutter_outer(cut_radius, blade_grooves=false) {
             }
         }
         cylinder(r=cut_radius-cutter_blade_thickness/2-cutter_outer_thickness, h=cutter_outer_z, $fn=cutter_fn);
-        echo(cut_radius-cutter_blade_thickness/2-cutter_outer_thickness);
     }
     if (blade_grooves) {
         for (i = [0:360/3:360]) {
@@ -134,7 +133,7 @@ bits_box_wt = 2; // Wall thickness
 game_box_inside_x = 257;
 bits_box_clearance_x = 5;
 // bits_box_x = game_box_inside_x-bits_box_clearance_x;
-bits_box_lid_clearance = 0.35;
+bits_box_lid_clearance = 0.25;
 bits_box_bits_clearance = 0.5; // How much space around the character tokens?
 // bits_box_y = character_token_r*2+bits_box_wt*2+2*bits_box_bits_clearance;
 bits_box_compartment_xy = character_token_r*2+bits_box_bits_clearance*2;
@@ -187,19 +186,51 @@ module clip() {
     }
 }
 
-render() {
-    // life_token(); // 18 (townsfolk) + 5 (traveller)
-    // character_token(); // 103
-    // vote_token(); // 20
-    // effect_token(); // 125
-    // alignment_token(); // 22
-    // pip_token(); // 34
-    // info_tag(); // 12
-    // shroud(); // 18
-    // cutter(character_token_r);
-    // cutter(life_token_r);
-    // cutter(effect_token_r);
-    // bits_box_base(); // 4
-    bits_box_lid(); // 4
-    // rotate([90,0,0]) clip();
+// You can safely ignore these, they're for exporting everything to STL in bulk.
+batch_export = false;
+print_life_token = false;
+print_character_token = false;
+print_vote_token = false;
+print_effect_token = false;
+print_alignment_token = false;
+print_pip_token = false;
+print_info_tag = false;
+print_shroud = false;
+print_cutter_character_token = false;
+print_cutter_life_token = false;
+print_cutter_effect_token = false;
+print_bits_box_base = false;
+print_bits_box_lid = false;
+
+if (batch_export) {
+    if (print_life_token) life_token();
+    if (print_character_token) character_token();
+    if (print_vote_token) vote_token();
+    if (print_effect_token) effect_token();
+    if (print_alignment_token) alignment_token();
+    if (print_pip_token) pip_token();
+    if (print_info_tag) info_tag();
+    if (print_shroud) shroud();
+    if (print_cutter_character_token) cutter(character_token_r);
+    if (print_cutter_life_token) cutter(life_token_r);
+    if (print_cutter_effect_token) cutter(effect_token_r);
+    if (print_bits_box_base) bits_box_base();
+    if (print_bits_box_lid) bits_box_lid();
+} else {
+    render() {
+        // life_token(); // 18 (townsfolk) + 5 (traveller)
+        // character_token(); // 103
+        // vote_token(); // 20
+        effect_token(); // 125
+        // alignment_token(); // 22
+        // pip_token(); // 34
+        // info_tag(); // 12
+        // shroud(); // 18
+        // cutter(character_token_r);
+        // cutter(life_token_r);
+        // cutter(effect_token_r);
+        // bits_box_base(); // 4
+        // bits_box_lid(); // 4
+        // rotate([90,0,0]) clip();
+    }
 }
