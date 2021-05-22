@@ -120,6 +120,16 @@ module shroud() {
     }
 }
 
+
+// Bits box
+// I originally started out with a design matching the bits boxes that come with the
+// proper version of the game, with three square compartments large enough to hold
+// the character tokens, and two smaller compartments at the end, all in one row.
+// However this was too long to fit onto my print bed, so I went for a 2x2 arrangement
+// of uniformly sized compartments.
+// I added a hole cutout in the bottom of the bits box base to let air in. I found
+// on earlier versions that it was hard to get the lid off due to the partial vacuum
+// formed when lifting the lid.
 bits_box_wt = 2; // Wall thickness
 game_box_inside_x = 257;
 bits_box_clearance_x = 5;
@@ -157,6 +167,26 @@ module bits_box_lid() {
     }
 }
 
+// This is a clip to hold the two halves of the grimoire box together. Dog clips
+// work well enough, but for maximum structural strength the very tops of the side
+// edges of the grimoire should be pinched together. The pinch point of normal dog
+// clips is some distance from the base of their throat.
+
+clip_z = 25;
+clip_length = 50;
+clip_wt = 3;
+// When tightly squashed the edges of my grimoire, made from a pandemic legacy season 0 box,
+// measure 6.05mm in total.
+clip_gap = 6.0;
+
+module clip() {
+    difference () {
+        cube([clip_wt*2+clip_gap, clip_length, clip_z]);
+        translate([clip_wt,0,clip_wt]) cube([clip_gap, clip_length, clip_z]);
+        translate([0,0,clip_z]) rotate([0,45,0]) cube([(clip_wt*2+clip_gap)/sqrt(2), clip_length, (clip_wt*2+clip_gap)/sqrt(2)]);
+    }
+}
+
 render() {
     // life_token(); // 18 (townsfolk) + 5 (traveller)
     // character_token(); // 103
@@ -168,7 +198,8 @@ render() {
     // shroud(); // 18
     // cutter(character_token_r);
     // cutter(life_token_r);
-    cutter(effect_token_r);
+    // cutter(effect_token_r);
     // bits_box_base(); // 4
-    // bits_box_lid(); // 4
+    bits_box_lid(); // 4
+    // rotate([90,0,0]) clip();
 }
