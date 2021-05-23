@@ -15,7 +15,7 @@ info_tag_corner_r = 3.5;
 info_tag_offset_x = info_tag_x-info_tag_corner_r*2;
 info_tag_offset_y = info_tag_y-info_tag_corner_r*2;
 
-token_z = 2;
+token_z = 1.5;
 $fn=64;
 
 // This is a tool for cutting nice circles out of paper for gluing onto the printed tokens.
