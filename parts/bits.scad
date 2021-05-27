@@ -199,6 +199,8 @@ print_shroud = false;
 print_cutter_character_token = false;
 print_cutter_life_token = false;
 print_cutter_effect_token = false;
+print_cutter_pip_token = false;
+print_cutter_alignment_token = false;
 print_bits_box_base = false;
 print_bits_box_lid = false;
 print_clip = false;
@@ -215,6 +217,8 @@ if (batch_export) {
     if (print_cutter_character_token) cutter(character_token_r);
     if (print_cutter_life_token) cutter(life_token_r);
     if (print_cutter_effect_token) cutter(effect_token_r);
+    if (print_cutter_pip_token) cutter(pip_token_r);
+    if (print_cutter_alignment_token) cutter(alignment_token_r);
     if (print_bits_box_base) bits_box_base();
     if (print_bits_box_lid) bits_box_lid();
     if (print_clip) rotate([90,0,0]) clip();
