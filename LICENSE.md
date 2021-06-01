@@ -1,6 +1,9 @@
 None of the PDFs in this repo are mine.
+
 The contents of official_pdfs are copyright The Pandemonium Institute
+
 The contents of official_pdfs are copyright Ben Finney
+
 The contents of the parts directory are under the following license (MIT):
 
 Copyright 2021 Travis Howse (tjhowse@gmail.com)
