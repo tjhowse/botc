@@ -1,8 +1,8 @@
 life_token_r = 40/2;
 character_token_r = 47/2;
 vote_token_r = 25/2;
-effect_token_r = 25/2;
-pip_token_r = 12/2;
+reminder_token_r = 25/2;
+night_token_r = 12/2;
 alignment_token_r = 15/2;
 
 shroud_x = 20;
@@ -90,16 +90,16 @@ module vote_token() {
     token(vote_token_r);
 }
 
-module effect_token() {
-    token(effect_token_r);
+module reminder_token() {
+    token(reminder_token_r);
 }
 
 module alignment_token() {
     token(alignment_token_r);
 }
 
-module pip_token() {
-    token(pip_token_r);
+module night_token() {
+    token(night_token_r);
 }
 
 module info_tag() {
@@ -191,15 +191,15 @@ batch_export = false;
 print_life_token = false;
 print_character_token = false;
 print_vote_token = false;
-print_effect_token = false;
+print_reminder_token = false;
 print_alignment_token = false;
-print_pip_token = false;
+print_night_token = false;
 print_info_tag = false;
 print_shroud = false;
 print_cutter_character_token = false;
 print_cutter_life_token = false;
-print_cutter_effect_token = false;
-print_cutter_pip_token = false;
+print_cutter_reminder_token = false;
+print_cutter_night_token = false;
 print_cutter_alignment_token = false;
 print_bits_box_base = false;
 print_bits_box_lid = false;
@@ -209,15 +209,15 @@ if (batch_export) {
     if (print_life_token) life_token();
     if (print_character_token) character_token();
     if (print_vote_token) vote_token();
-    if (print_effect_token) effect_token();
+    if (print_reminder_token) reminder_token();
     if (print_alignment_token) alignment_token();
-    if (print_pip_token) pip_token();
+    if (print_night_token) night_token();
     if (print_info_tag) info_tag();
     if (print_shroud) shroud();
     if (print_cutter_character_token) cutter(character_token_r);
     if (print_cutter_life_token) cutter(life_token_r);
-    if (print_cutter_effect_token) cutter(effect_token_r);
-    if (print_cutter_pip_token) cutter(pip_token_r);
+    if (print_cutter_reminder_token) cutter(reminder_token_r);
+    if (print_cutter_night_token) cutter(night_token_r);
     if (print_cutter_alignment_token) cutter(alignment_token_r);
     if (print_bits_box_base) bits_box_base();
     if (print_bits_box_lid) bits_box_lid();
@@ -227,16 +227,16 @@ if (batch_export) {
         // life_token(); // 18 (townsfolk) + 5 (traveller)
         // character_token(); // 103
         // vote_token(); // 20
-        effect_token(); // 125
+        // reminder_token(); // 125
         // alignment_token(); // 22
-        // pip_token(); // 34
+        // night_token(); // 34
         // info_tag(); // 12
         // shroud(); // 18
         // cutter(character_token_r);
         // cutter(life_token_r);
-        // cutter(effect_token_r);
-        // bits_box_base(); // 4
-        // bits_box_lid(); // 4
+        // cutter(reminder_token_r);
+        bits_box_base(); // 4
+        bits_box_lid(); // 4
         // rotate([90,0,0]) clip();
     }
 }
