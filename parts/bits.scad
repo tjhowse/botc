@@ -134,9 +134,9 @@ game_box_inside_x = 257;
 bits_box_clearance_x = 5;
 // bits_box_x = game_box_inside_x-bits_box_clearance_x;
 bits_box_lid_clearance = 0.25;
-bits_box_bits_clearance = 0.5; // How much space around the character tokens?
-// bits_box_y = character_token_r*2+bits_box_wt*2+2*bits_box_bits_clearance;
-bits_box_compartment_xy = character_token_r*2+bits_box_bits_clearance*2;
+bits_box_bits_clearance = 0.5; // How much space around the reminder tokens?
+// Make the compartments big enough to store four stacks of reminder tokens.
+bits_box_compartment_xy = reminder_token_r*4+bits_box_bits_clearance*2;
 bits_box_x = 2*bits_box_compartment_xy+bits_box_wt*3;
 bits_box_y = bits_box_x;
 bits_box_z = 35;
