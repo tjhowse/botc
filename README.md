@@ -33,7 +33,7 @@ You'd also need a laser cutter.
 
 #### Felt
 
-I bought a 2m * 1m length of black felt at the craft shop. There were two different felt materials available, make with different substances. I don't remember which one I got, but they both would've probably been fine. I used about half of it.
+I bought a 2m * 1m length of black felt at the craft shop. There were two different felt materials available, made from different substances. I don't remember which one I got, but they both would've probably been fine. I used about half of it.
 
 #### Printing
 
@@ -43,7 +43,7 @@ I bought a cheap laminator from officeworks too. I laminated a bunch of stuff. L
 
 #### Gimoire box
 
-My grimoire box started life as a Pandemic Legacy Season 0 box. I emptied it and used PVA glue to attach the large colour panels to the outside. Ben's grimoire covers have a few variants for the long sides. I went with one paper-effect and one "Blood on the Clocktower" panel for each of the top and bottom halves. I covered the outsides of the boxes with contact adhesive - easily the most annoying part of the job. I cut out some felt to exactly match the big inside face of each half of the box (careful, they're different sizes) and then painted the inside with PVA glue. I stuck the felt down, using a small plastic tube to roll it around to get good adhesion. I lined the inside sides of the box with fairly thin black card. Don't use black card or felt for the vertical insides as you won't be able to put the box back together again.
+My grimoire box started life as a Pandemic Legacy Season 0 box. I emptied it and used PVA glue to attach the large colour panels to the outside. Ben's grimoire covers have a few variants for the long sides. I went with one paper-effect and one "Blood on the Clocktower" panel for each of the top and bottom halves. I covered the outsides of the boxes with contact adhesive - easily the most annoying part of the job. I cut out some felt to exactly match the big inside face of each half of the box (careful, they're different sizes) and then painted the inside with PVA glue. I stuck the felt down, using a small plastic tube to roll it around to get good adhesion. I lined the inside sides of the box with fairly thin black card. Don't use thick card or felt for the vertical insides as you won't be able to put the box back together again.
 
 I wish I'd spraypainted the inside of the box before starting to glue things in. There is a small gap visible between the felt and the black card. It would've looked better had it all been black.
 
