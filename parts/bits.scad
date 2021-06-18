@@ -176,7 +176,7 @@ clip_length = 50;
 clip_wt = 3;
 // When tightly squashed the edges of my grimoire, made from a pandemic legacy season 0 box,
 // measure 6.05mm in total.
-clip_gap = 6.0;
+clip_gap = 5.5;
 
 module clip() {
     difference () {
